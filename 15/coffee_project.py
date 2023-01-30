@@ -81,7 +81,7 @@ def coffee_machine():
             coffee_machine()
         elif order.lower() == 'off':
             print('Turning off.')
-            break
+            is_running = False
         else:
             while True:
                 if order in MENU:
@@ -90,34 +90,34 @@ def coffee_machine():
                     print('Sorry, i did not understand you.')
                     order = make_order()
 
-        check_order = check_resources(order)
-        for key, val in check_order.items():
-            if not val:
-                print(f"Sorry, not enough {key} to make order.")
-                print('Turning off.')
-                return
-            else:
-                resources[key] -= MENU[order]['ingredients'][key]
+            check_order = check_resources(order)
+            for key, val in check_order.items():
+                if not val:
+                    print(f"Sorry, not enough {key} to make order.")
+                    print('Turning off.')
+                    return
+                else:
+                    resources[key] -= MENU[order]['ingredients'][key]
 
-        cost = MENU[order]['cost']
-        print(f"Please insert {cost}.")
-        payment = 0
+            cost = MENU[order]['cost']
+            print(f"Please insert {cost}.")
+            payment = 0
 
-        for coin in coins_dictionary:
-            coin_input = int(input(f"How many {coin}s would you like to insert? "))
-            payment += calculate_cost(coins_dictionary[coin], coin_input)
-
-        while cost > payment:
-            print(f"Not enough balance, please insert {(cost - payment):.2f} more.")
             for coin in coins_dictionary:
                 coin_input = int(input(f"How many {coin}s would you like to insert? "))
                 payment += calculate_cost(coins_dictionary[coin], coin_input)
 
-        if payment > cost:
-            change = payment - cost
-            print(f"Your change is {change:.2f}.")
+            while cost > payment:
+                print(f"Not enough balance, please insert {(cost - payment):.2f} more.")
+                for coin in coins_dictionary:
+                    coin_input = int(input(f"How many {coin}s would you like to insert? "))
+                    payment += calculate_cost(coins_dictionary[coin], coin_input)
 
-        print(f'Please enjoy your {order}.')
+            if payment > cost:
+                change = payment - cost
+                print(f"Your change is {change:.2f}.")
+
+            print(f'Please enjoy your {order}.')
 
 
 coffee_machine()
