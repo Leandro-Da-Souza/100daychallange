@@ -78,7 +78,7 @@ def coffee_machine(bank):
 
         if order.lower() == 'report':
             print_resources()
-            coffee_machine()
+            print(f"Money: ${bank}")
         elif order.lower() == 'off':
             print('Turning off.')
             is_running = False
