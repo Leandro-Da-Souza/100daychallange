@@ -108,7 +108,7 @@ def coffee_machine(bank):
                 payment += calculate_cost(coins_dictionary[coin], coin_input)
 
             while cost > payment:
-                print(f"Not enough balance, please insert {(cost - payment):.2f} more.")
+                print(f"Not enough payment, please insert {(cost - payment):.2f} more.")
                 for coin in coins_dictionary:
                     coin_input = int(input(f"How many {coin}s would you like to insert? "))
                     payment += calculate_cost(coins_dictionary[coin], coin_input)
