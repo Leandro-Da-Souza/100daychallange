@@ -28,7 +28,7 @@ coins_dictionary = {
     'penny': 0.01
 }
 
-bank = 0
+profit = 0
 
 
 def print_resources():
@@ -69,7 +69,7 @@ def calculate_cost(coin, times):
     return coin * times
 
 
-def coffee_machine():
+def coffee_machine(bank):
     is_running = True
 
     while is_running:
@@ -115,9 +115,12 @@ def coffee_machine():
 
             if payment > cost:
                 change = payment - cost
+                payment -= change
                 print(f"Your change is {change:.2f}.")
 
             print(f'Please enjoy your {order}.')
 
+            bank += payment
 
-coffee_machine()
+
+coffee_machine(profit)
