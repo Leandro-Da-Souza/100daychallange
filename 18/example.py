@@ -23,7 +23,7 @@ screen.colormode(255)
 
 
 def draw_shape(shape: str, distance: int, color: str):
-    angles = {
+    shapes = {
         "triangle": 360 / 3,
         "square": 360 / 4,
         "pentagon": 360 / 5,
@@ -38,14 +38,14 @@ def draw_shape(shape: str, distance: int, color: str):
     UI.color(color)
 
     if shape.lower() == 'all':
-        for x in angles:
-            for _ in range(int(360 / angles[x])):
+        for x in shapes:
+            for _ in range(int(360 / shapes[x])):
                 UI.forward(distance)
-                UI.right(int(angles[x]))
+                UI.right(int(shapes[x]))
     else:
-        for _ in range(int(360 / angles[shape])):
+        for _ in range(int(360 / shapes[shape])):
             UI.forward(distance)
-            UI.right(int(angles[shape]))
+            UI.right(int(shapes[shape]))
 
 
 # draw_shape(shape='all', distance=50, color='blue')
