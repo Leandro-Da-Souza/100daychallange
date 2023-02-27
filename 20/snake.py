@@ -36,6 +36,13 @@ class Snake:
             self.segments[seg_num].goto(new_x, new_y)
         self.head.forward(20)
 
+    def reset(self):
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+        self.segments.clear()
+        self.create()
+        self.head = self.segments[0]
+
     def up(self):
         if self.head.heading() != DIRECTIONS["DOWN"]:
             self.head.setheading(DIRECTIONS["UP"])
